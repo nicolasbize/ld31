@@ -50,8 +50,6 @@ public class PlayerMovement : MonoBehaviour {
         
 		// apply gravity
 		my -= gravity * Time.deltaTime;	
-        
-	    
     }
 	
 	private void Move(Vector3 movement) {
@@ -106,4 +104,6 @@ public class PlayerMovement : MonoBehaviour {
         
 		transform.Translate (movement);
 	}
+	
+	
 }

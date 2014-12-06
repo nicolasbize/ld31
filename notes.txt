@@ -24,9 +24,7 @@ ENGINE TASKS:
 [ ] : Traps : saws, bouncy stuffs, arrows
 
 
-Time to write some good lyrics / credits: 135 models, not bad :)
-
-
+Almost 7AM... Time to call it a night...
 
 This Is Your Last Chance
 What If You Could Take It Back
@@ -66,6 +64,10 @@ Made For Ludum Dare #31
 The End Is Near...
 Merry XMas!!
 Thanks for playing!
+
+
+
+
 --
 Dedicated to Samuel
 See you in the next life dear friend
