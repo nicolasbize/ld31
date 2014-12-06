@@ -1,0 +1,70 @@
+ENTIRE GAME ON ONE SCREEN...
+Possibly the worse theme we could have gotten!! :)
+
+Looking for ideas....
+
+OK, let's go for a platformer...
+
+THE END IS FAR
+
+Platformer where you have to survive through the credits.
+
+Starts off with character on screen, with a small purpose like clicking the start button / end button
+Then the credits start rolling... Except they are full of dangers and try to kill you as they roll up
+
+If I have time... I'd love to implement some weapons / items:
+- a hook
+- a bow with ennemies
+
+ENGINE TASKS:
+[X] : Character controls, platform feel
+[ ] : Create 3d Text Models and have them roll up
+[ ] : Engine dynamics
+[ ] : Death
+[ ] : Traps : saws, bouncy stuffs, arrows
+
+
+Time to write some good lyrics / credits
+
+
+
+This Game Cost 19$ in Taco Bell to Produce
+Who Picked the Theme?
+This World Needs More Nutella
+This Game Was Not Tested Thoroughly
+Warning: Funniest Jokes Coming Up
+How could this game could be so awesome?
+Enjoying incredible single color textures?
+This game features amazing 3D animations
+No animals were harmed to make the game
+Thanks McDonalds For Closing at 2AM
+Special Request By Mr. SnowMan: ☃
+Initial Inspiration For LD Theme: None
+Built with Love in Unity 3D
+31 chewing-gums consumed in the making
+It's too late to write good lyrics
+Noone has ever been this far
+Did you ever meet my friend GladOs?
+All Praise Ludum Dare
+Incredible FX done at 5AM
+Are you enjoying this music?
+Special Thanks Diet Coke & Red Bull
+A game inspired by my latest dentist visit
+Credits
+-------
+FX   Nicolas Bize
+Awesome Music   Nicolas Bize
+Graphics   Nicolas   Bize
+Programming   Nicolas   Bize
+-------
+Credits
+Made For Ludum Dare #31
+The End Is Near...
+Merry XMas!!
+Thanks for playing!
+
+
+--
+Dedicated to Samuel
+See you in the next life my friend
+
