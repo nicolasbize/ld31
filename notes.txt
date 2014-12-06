@@ -24,10 +24,14 @@ ENGINE TASKS:
 [ ] : Traps : saws, bouncy stuffs, arrows
 
 
-Time to write some good lyrics / credits
+Time to write some good lyrics / credits: 135 models, not bad :)
 
 
 
+This Is Your Last Chance
+What If You Could Take It Back
+How Could It All Fit On One Screen
+Sleeping Is For The Weak
 This Game Cost 19$ in Taco Bell to Produce
 Who Picked the Theme?
 This World Needs More Nutella
@@ -62,9 +66,7 @@ Made For Ludum Dare #31
 The End Is Near...
 Merry XMas!!
 Thanks for playing!
-
-
 --
 Dedicated to Samuel
-See you in the next life my friend
+See you in the next life dear friend
 
