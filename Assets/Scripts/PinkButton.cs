@@ -9,6 +9,7 @@ public class PinkButton : MonoBehaviour {
 	void OnTriggerEnter(Collider collider) {
 		
 		if (collider.gameObject.name == "mrscubechar") {
+			gameObject.GetComponent<AudioSource>().Play();
 			Destroy (collider.gameObject);
 			Destroy (gameObject);
 			Instantiate(Explosion, transform.position, Quaternion.identity);

@@ -34,6 +34,7 @@ public class Intro : MonoBehaviour {
 			curLength++;
 			string curText = introText.Substring(0, curLength - 1);
 			instruction.text = curText + "█";
+			gameObject.GetComponent<AudioSource>().Play();
 			if(curText.EndsWith("\n")) {
 				step++;
 				curTimer = -20f;

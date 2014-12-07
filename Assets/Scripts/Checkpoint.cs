@@ -16,6 +16,7 @@ public class Checkpoint : MonoBehaviour {
 	void OnTriggerEnter(Collider collider) {
 		if(collider.gameObject.layer == playerLayer) {
 			gameLogic.GetComponent<Restart>().SetCheckpoint(transform.position);
+			gameObject.GetComponent<AudioSource>().Play();
 			Destroy(gameObject);
 		} else if(collider.gameObject.layer == ennemyLayer) {
 			Destroy(gameObject);

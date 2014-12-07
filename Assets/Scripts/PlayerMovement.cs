@@ -4,8 +4,8 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
 	public float speed = 5f;
-	public float jumpForce = 10f;
-	public float gravity = 60f;
+	public float jumpForce = 8f;
+	public float gravity = 70f;
 	public LayerMask collisionMask;
 	public GameObject gameLogic;
 	public GameObject bloodSpurt;
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 	private BoxCollider collider;
 	private Vector3 s;
 	private Vector3 c;
-	private float errMargin = 0.01f;
+	private float errMargin = 0.005f;
 	
 	private Ray ray;
 	private RaycastHit hit;
@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour {
 			
 		if(canJump && Input.GetButtonDown("Jump")) {
 			my = jumpForce;
+			gameObject.GetComponent<AudioSource>().Play ();
 			canJump = false;
 			onGround = false;
         }

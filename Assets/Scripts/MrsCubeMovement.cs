@@ -4,7 +4,7 @@ using System.Collections;
 public class MrsCubeMovement : MonoBehaviour {
 
 
-	private float speed = 4f;
+	private float speed = 5f;
 	private float dir = 1f;
 	private bool keepWalking = true;
 	private bool willHit = false;

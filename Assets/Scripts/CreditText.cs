@@ -5,14 +5,14 @@ public class CreditText : MonoBehaviour {
 
 	private float dir = -1f;
 	public bool enabled = true;
-	public float speed = 3f;
+	public float speed = 5f;
 	public bool isDying = false;
 	private bool exploded = false;
 	private Transform text;
 	private Transform emitter;
 	public GameObject textExplosion;
 	
-	private float deathTime = 1f;
+	private float deathTime = 0.5f;
 	private bool shifting = false;
 	private bool shifted = false;
 	private Vector3 initialPos;
@@ -36,6 +36,7 @@ public class CreditText : MonoBehaviour {
 		exploded = false;
 		enabled = true;
 		isDying = false;
+		deathTime = 0.5f;
 		emitter.gameObject.GetComponent<ParticleSystem>().Stop();
 		text.localEulerAngles = new Vector3(0, 180, 0);
 		text.gameObject.GetComponent<MeshRenderer>().enabled = true;

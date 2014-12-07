@@ -27,7 +27,7 @@ public class Restart : MonoBehaviour {
 				}
 			}
 			curTimer += 0.1f;
-			if (curTimer > 14f) {
+			if (curTimer > 8f) {
 				curStep++;
 				curTimer = 0f;
 			}
@@ -69,7 +69,9 @@ public class Restart : MonoBehaviour {
 	}
 	
 	public void CompleteGame() {
+		running = false;
 		RemoveIntroElements(false);
+		Destroy(GameObject.Find ("Credits"));
 		// play music
 	}
 	

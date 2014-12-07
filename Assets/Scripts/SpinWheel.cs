@@ -25,6 +25,7 @@ public class SpinWheel : MonoBehaviour {
 		if(enabled) {
 			if(collider.gameObject.layer == textLayer) {
 				collider.gameObject.GetComponent<CreditText>().Die();
+				gameObject.GetComponent<AudioSource>().Play ();
 			} else if(collider.gameObject.layer == playerLayer) {
 				collider.gameObject.GetComponent<PlayerMovement>().Die();
 			}
