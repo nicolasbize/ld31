@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Intro : MonoBehaviour {
 
 	public Text instruction;
-	private float typingSpeed = 0.3f;//1f;
+	private float typingSpeed = 1f;
 	private float curTimer = 0f;
 	private int curLength = 0;
 	private bool done = false;
@@ -36,7 +36,7 @@ public class Intro : MonoBehaviour {
 			instruction.text = curText + "█";
 			if(curText.EndsWith("\n")) {
 				step++;
-				curTimer = 0f;//-20f;
+				curTimer = -20f;
 				if(step == 3) {
 					mrs.transform.Find("LoveThought").GetComponent<MeshRenderer>().enabled = true;
 					mrs.transform.Find("LoveThought").GetComponent<ParticleSystem>().Play();

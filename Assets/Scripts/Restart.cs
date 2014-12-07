@@ -10,18 +10,24 @@ public class Restart : MonoBehaviour {
 	private bool running = false;
 	private GameObject[] slicers = new GameObject[12];
 	public GameObject player;
-	public GameObject credits;
 	public GameObject screen;
+	private Vector3 restartSpawn = new Vector3(0, 4f, 0);
+	private bool checkedpoint = false;
 	public bool inGame = false;
 
 	void Update() {
 		if (running) {
-			if (curStep < 6) {
+			if (!checkedpoint && curStep < 6) {
 				slicers[curStep].GetComponent<Slicer>().Enable();
 				slicers[11-curStep].GetComponent<Slicer>().Enable();
 			}
+			if (checkedpoint) {
+				for(int i=0; i<12; i++) {
+					slicers[i].GetComponent<Slicer>().Enable();
+				}
+			}
 			curTimer += 0.1f;
-			if (curTimer > 13f) {
+			if (curTimer > 14f) {
 				curStep++;
 				curTimer = 0f;
 			}
@@ -39,6 +45,14 @@ public class Restart : MonoBehaviour {
 		inGame = true;
 	}
 	
+	public void SetCheckpoint(Vector3 spawn) {
+		restartSpawn = spawn;
+		foreach(GameObject g in GameObject.FindGameObjectsWithTag("Text")){
+			g.GetComponent<CreditText>().Checkpoint();
+		}
+		checkedpoint = true;
+	}
+	
 	public void RestartGame(bool respawnPlayer) {
 		IntroDone();
 		foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Ennemy")) {
@@ -49,10 +63,14 @@ public class Restart : MonoBehaviour {
 			PlacePlayer();
 		}
 		PlaceSlicers();
-		PlaceCredits();
 		curTimer = 0f;
 		curStep = 0;
 		running = true;
+	}
+	
+	public void CompleteGame() {
+		RemoveIntroElements(false);
+		// play music
 	}
 	
 	private void RemoveIntroElements(bool respawnPlayer) {
@@ -63,18 +81,20 @@ public class Restart : MonoBehaviour {
 		if(obj != null) { Destroy(obj); }
 		obj = GameObject.Find ("mrboxchar");
 		if(obj != null && respawnPlayer) { Destroy(obj); }
-		obj = GameObject.Find ("Credits");
-		if(obj != null) { Destroy(obj); }
+		foreach(GameObject g in GameObject.FindGameObjectsWithTag("Text")){
+			g.GetComponent<CreditText>().Restart();
+		}
+		foreach(Transform t in spinParent.transform) {
+			Destroy(t.gameObject);
+		}
 		screen.GetComponent<ScreenShake>().Disable();
 		
 	}
 	
 	public void PlacePlayer() {
-		Instantiate(player, new Vector3(0, 3.65f, 0), Quaternion.identity);
-	}
-	
-	private void PlaceCredits() {
-		Instantiate(credits, new Vector3(-1, 57.4f, 4), Quaternion.identity);
+		GameObject p = Instantiate(player, restartSpawn, Quaternion.identity) as GameObject;
+		p.GetComponent<PlayerMovement>().gameLogic = gameObject;
+		p.name = "mrboxchar";
 	}
 	
 	private void PlaceSlicers() {
@@ -82,6 +102,7 @@ public class Restart : MonoBehaviour {
 			Vector3 v = spinParent.transform.position;
 			slicers[i] = Instantiate(slicer, new Vector3(v.x + i * 3.8f, v.y, v.z), Quaternion.identity) as GameObject;
 			slicers[i].transform.parent = spinParent.transform;
+			
 		}
 	}
 }

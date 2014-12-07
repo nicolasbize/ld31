@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float gravity = 60f;
 	public LayerMask collisionMask;
 	public GameObject gameLogic;
+	public GameObject bloodSpurt;
 	
 	private bool onGround = false;
 	private bool canJump = true;
@@ -34,11 +35,6 @@ public class PlayerMovement : MonoBehaviour {
 		if (canMove) {
 			HandleInput();
 			Move(new Vector3(mx, my, 0) * Time.deltaTime);
-		} else {
-			if(!transform.FindChild("BloodSpurt").GetComponent<ParticleSystem>().isPlaying) {
-				Destroy(gameObject);
-				gameLogic.GetComponent<Restart>().RestartGame(true);
-			}
 		}
 	}
 	
@@ -117,8 +113,10 @@ public class PlayerMovement : MonoBehaviour {
 	
 	public void Die() {
 		canMove = false;
-		transform.FindChild("BloodSpurt").GetComponent<ParticleSystem>().Play();
 		
+		gameObject.renderer.enabled = false;
+		Instantiate(bloodSpurt, transform.position, Quaternion.identity);
+		gameLogic.GetComponent<Restart>().RestartGame(true);
 	}
 	
 	

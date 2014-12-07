@@ -23,7 +23,6 @@ public class SpinWheel : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider collider) {
 		if(enabled) {
-			Debug.Log ("Hit");
 			if(collider.gameObject.layer == textLayer) {
 				collider.gameObject.GetComponent<CreditText>().Die();
 			} else if(collider.gameObject.layer == playerLayer) {

@@ -22,6 +22,10 @@ public class CreditText : MonoBehaviour {
 	void Start () {
 		text = transform.FindChild("Text");
 		emitter = transform.FindChild ("Emitter");
+		Checkpoint();
+	}
+	
+	public void Checkpoint() {
 		initialPos = transform.position;
 	}
 	
@@ -31,8 +35,13 @@ public class CreditText : MonoBehaviour {
 		shifted = false;
 		exploded = false;
 		enabled = true;
-	}
-	
+		isDying = false;
+		emitter.gameObject.GetComponent<ParticleSystem>().Stop();
+		text.localEulerAngles = new Vector3(0, 180, 0);
+		text.gameObject.GetComponent<MeshRenderer>().enabled = true;
+		gameObject.GetComponent<BoxCollider>().enabled = true;
+    }
+    
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (enabled) {
@@ -58,7 +67,8 @@ public class CreditText : MonoBehaviour {
 				exploded = true;
 				emitter.gameObject.GetComponent<ParticleSystem>().Stop();
 				GameObject explode = Instantiate(textExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
-				Destroy(text.gameObject);
+				// Destroy(text.gameObject);
+				text.gameObject.GetComponent<MeshRenderer>().enabled = false;
 				gameObject.GetComponent<BoxCollider>().enabled = false;
 				
 			}

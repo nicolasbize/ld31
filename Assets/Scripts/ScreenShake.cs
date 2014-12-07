@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ScreenShake : MonoBehaviour {
 
 	public bool enabled = false;
+	public bool switching = false;
 	private float timer = 0f;
 	private float timeLength = 200f;
 	public Text instruction;
@@ -28,6 +29,21 @@ public class ScreenShake : MonoBehaviour {
 				gameLogic.GetComponent<Restart>().RestartGame(false);
 			}
 		}
+		if(switching) {
+			timer += 0.5f;
+			if(timer > 10) {
+				transform.FindChild("unharmed").gameObject.GetComponent<MeshRenderer>().enabled = false;
+				transform.FindChild("brokenscreen").gameObject.GetComponent<MeshRenderer>().enabled = true;
+			}
+			
+		}
+	}
+	
+	public void SwitchMesh() {
+		gameLogic.GetComponent<Restart>().CompleteGame();
+		timer = 0f;
+		switching = true;
+		
 	}
 	
 	public void Enable(){
