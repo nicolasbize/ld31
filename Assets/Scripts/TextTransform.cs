@@ -36,7 +36,7 @@ public class TextTransform : MonoBehaviour {
 		// add behaviour last as it needs to refer the other components
 		CreditText ctext = parent.AddComponent<CreditText>();
 		ctext.textExplosion = TextExplosion;
-		ctext.enabled = true;
+		ctext.enabled = false;
 	}
 	
 	// Update is called once per frame
