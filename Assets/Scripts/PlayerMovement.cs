@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour {
 		Vector3 p = transform.position;
 		RaycastHit hitInfo = new RaycastHit();
 		Vector3 rayDir = Vector3.zero;
-		Ray[] rays = new Ray[3];
+		Ray[] rays = new Ray[6];
 
 		// check for vertical collisions
         float vDir = Mathf.Abs(movement.y) > errMargin ? Mathf.Sign(movement.y) : -1;
