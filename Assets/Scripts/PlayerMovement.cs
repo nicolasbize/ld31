@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour {
 	private BoxCollider collider;
 	private Vector3 s;
 	private Vector3 c;
-	private float errMargin = 0.05f;
+	private float errMargin = 0.01f;
 	
 	private Ray ray;
 	private RaycastHit hit;
@@ -61,13 +61,13 @@ public class PlayerMovement : MonoBehaviour {
 
 		// check for vertical collisions
         float vDir = Mathf.Abs(movement.y) > errMargin ? Mathf.Sign(movement.y) : -1;
-        
+        Debug.Log (movement.y);
         // 3 rays: left, middle, right
-        float ySide = p.y;
+		float ySide = p.y + (movement.y > errMargin ? collider.size.y * 2 : collider.size.y / 2);
         rayDir = new Vector3(0, vDir, 0);
-		rays[0] = new Ray(new Vector3(p.x - collider.size.x / 2, ySide, 0), rayDir);
-		rays[1] = new Ray(new Vector3(p.x, ySide, 0), rayDir);
-		rays[2] = new Ray(new Vector3(p.x + collider.size.x / 2, ySide, 0), rayDir);
+		rays[0] = new Ray(new Vector3(p.x - collider.size.x / 2, ySide, 0), 2 * rayDir);
+		rays[1] = new Ray(new Vector3(p.x, ySide, 0), 2 * rayDir);
+		rays[2] = new Ray(new Vector3(p.x + collider.size.x / 2, ySide, 0), 2 * rayDir);
 		
 		foreach(Ray r in rays){
 			Debug.DrawRay(r.origin, r.direction);
@@ -88,9 +88,9 @@ public class PlayerMovement : MonoBehaviour {
 		float xSide = p.x + hDir * collider.size.x / 2;
 		rayDir = new Vector3(hDir, 0, 0);
 
-		rays[0] = new Ray(new Vector3(xSide, p.y - collider.size.y, 0), rayDir);
-		rays[1] = new Ray(new Vector3(xSide, p.y, 0), rayDir);
-		rays[2] = new Ray(new Vector3(xSide, p.y + collider.size.y, 0), rayDir);
+		rays[0] = new Ray(new Vector3(xSide, p.y + 2 * collider.size.y, 0), rayDir);
+		rays[1] = new Ray(new Vector3(xSide, p.y + collider.size.y, 0), rayDir);
+		rays[2] = new Ray(new Vector3(xSide, p.y, 0), rayDir);
 		
 		foreach(Ray r in rays){
 			Debug.DrawRay(r.origin, r.direction);

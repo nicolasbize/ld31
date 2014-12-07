@@ -27,6 +27,7 @@ public class ScreenShake : MonoBehaviour {
 				foreach(GameObject obj in objs) {
 					obj.GetComponent<CreditText>().Enable();
 				}
+				transform.localEulerAngles = new Vector3(270, 180, 0);
 				gameLogic.GetComponent<Restart>().SetSavePoint();
 			}
 		}

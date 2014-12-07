@@ -27,9 +27,18 @@ ENGINE TASKS:
 
 ---
 Intro
-In a land far, far away...
-Two Lovers Dreamed As They Watched The Sky
-"When Will We Ever Be Able To Leave This Screen?"
+"In a screen far, far away...\n" +
+"Our Two Heroes Resided In The Game's Memory.\n" +
+"Mrs Cube and Mr Box Had Become Deeply In Love.\n" +
+"Their Lives Were Filled With Hope And Joy.\n" +
+"They Were Expecting Their First Pixels.\n" +
+"What Color Would They Be?\n" +
+"How Many Bytes Will They Measure?\n" +
+"But Amongst all those questions, Mrs Cube became afraid..\n" +
+"What If She Had A Dead Pixel...\n" +
+"How Could They Live With So Little Space?\n" +
+"Out Of Despair, Mrs Square Ventured Into The Unknown...\n" +
+"By Pushing The Forbidden End Game Button..."
 
 ----
 

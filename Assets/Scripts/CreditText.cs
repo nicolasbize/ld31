@@ -39,7 +39,7 @@ public class CreditText : MonoBehaviour {
 			float s = isDying ? speed / 10 : speed;
 			if (!shifting) {
 				transform.Translate(Vector3.up * dir * s * Time.deltaTime);
-				if (!shifted && transform.localPosition.y < -14f) {
+				if (!shifted && transform.localPosition.y < -19f) {
 					shifting = true;
                 }
 			} else {
