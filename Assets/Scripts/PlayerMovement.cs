@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour {
 			my = jumpForce;
 			canJump = false;
 			onGround = false;
-			
         }
         
 		// apply gravity
@@ -64,14 +63,14 @@ public class PlayerMovement : MonoBehaviour {
         float vDir = Mathf.Abs(movement.y) > errMargin ? Mathf.Sign(movement.y) : -1;
         
         // 3 rays: left, middle, right
-        float ySide = p.y + vDir * collider.size.y;
+        float ySide = p.y;
         rayDir = new Vector3(0, vDir, 0);
 		rays[0] = new Ray(new Vector3(p.x - collider.size.x / 2, ySide, 0), rayDir);
 		rays[1] = new Ray(new Vector3(p.x, ySide, 0), rayDir);
 		rays[2] = new Ray(new Vector3(p.x + collider.size.x / 2, ySide, 0), rayDir);
 		
 		foreach(Ray r in rays){
-//			Debug.DrawRay(r.origin, r.direction);
+			Debug.DrawRay(r.origin, r.direction);
 			if (Physics.Raycast(r, out hitInfo, Mathf.Max(Mathf.Abs(movement.y), errMargin), collisionMask)) { // see if we hit something
 				onGround = vDir < 0;
 				my = 0f;
@@ -94,7 +93,7 @@ public class PlayerMovement : MonoBehaviour {
 		rays[2] = new Ray(new Vector3(xSide, p.y + collider.size.y, 0), rayDir);
 		
 		foreach(Ray r in rays){
-//			Debug.DrawRay(r.origin, r.direction);
+			Debug.DrawRay(r.origin, r.direction);
 			if (Physics.Raycast(r, out hitInfo, Mathf.Max(Mathf.Abs(movement.x), errMargin), collisionMask)) { // see if we hit something
 				mx = 0f;
                 movement = new Vector3(0f, movement.y, 0f);
