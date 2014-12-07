@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float jumpForce = 10f;
 	public float gravity = 60f;
 	public LayerMask collisionMask;
+	public GameObject gameLogic;
 	
 	private bool onGround = false;
 	private bool canJump = true;
@@ -22,14 +23,23 @@ public class PlayerMovement : MonoBehaviour {
 	private Ray ray;
 	private RaycastHit hit;
 	
+	private bool canMove = true;
+	
 	
 	void Start() {
 		collider = GetComponent<BoxCollider>();
 	}
 	
 	void Update () {
-		HandleInput();
-		Move(new Vector3(mx, my, 0) * Time.deltaTime);
+		if (canMove) {
+			HandleInput();
+			Move(new Vector3(mx, my, 0) * Time.deltaTime);
+		} else {
+			if(!transform.FindChild("BloodSpurt").GetComponent<ParticleSystem>().isPlaying) {
+				Destroy(gameObject);
+				gameLogic.GetComponent<Restart>().RestartGame(true);
+			}
+		}
 	}
 	
 	private void HandleInput() {
@@ -61,7 +71,6 @@ public class PlayerMovement : MonoBehaviour {
 
 		// check for vertical collisions
         float vDir = Mathf.Abs(movement.y) > errMargin ? Mathf.Sign(movement.y) : -1;
-        Debug.Log (movement.y);
         // 3 rays: left, middle, right
 		float ySide = p.y + (movement.y > errMargin ? collider.size.y * 2 : collider.size.y / 2);
         rayDir = new Vector3(0, vDir, 0);
@@ -104,6 +113,12 @@ public class PlayerMovement : MonoBehaviour {
         
         
 		transform.Translate (movement);
+	}
+	
+	public void Die() {
+		canMove = false;
+		transform.FindChild("BloodSpurt").GetComponent<ParticleSystem>().Play();
+		
 	}
 	
 	

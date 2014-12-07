@@ -23,12 +23,9 @@ public class ScreenShake : MonoBehaviour {
 			timer += 0.5f;
 			if(timer > timeLength) {
 				enabled = false;
-				GameObject[] objs = GameObject.FindGameObjectsWithTag("Text");
-				foreach(GameObject obj in objs) {
-					obj.GetComponent<CreditText>().Enable();
-				}
 				transform.localEulerAngles = new Vector3(270, 180, 0);
-				gameLogic.GetComponent<Restart>().SetSavePoint();
+				gameLogic.GetComponent<Restart>().IntroDone();
+				gameLogic.GetComponent<Restart>().RestartGame(false);
 			}
 		}
 	}
@@ -36,5 +33,9 @@ public class ScreenShake : MonoBehaviour {
 	public void Enable(){
 		enabled = true;
 		timer = 0f;
+	}
+	
+	public void Disable(){
+		enabled = false;
 	}
 }

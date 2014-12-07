@@ -5,7 +5,7 @@ public class CreditText : MonoBehaviour {
 
 	private float dir = -1f;
 	public bool enabled = true;
-	public float speed = 2f;
+	public float speed = 3f;
 	public bool isDying = false;
 	private bool exploded = false;
 	private Transform text;

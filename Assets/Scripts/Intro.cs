@@ -59,4 +59,9 @@ public class Intro : MonoBehaviour {
 			}
 		}
 	}
+	
+	public void Finish() {
+		done = true;
+		instruction.text = "";
+	}
 }
