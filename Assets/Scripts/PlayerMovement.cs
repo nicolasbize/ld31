@@ -3,13 +3,11 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public float walkSpeed = 5f;
-	public float runSpeed = 10f;
+	public float speed = 5f;
 	public float jumpForce = 10f;
 	public float gravity = 60f;
 	public LayerMask collisionMask;
 	
-	private bool isRunning = false;
 	private bool onGround = false;
 	private bool canJump = true;
 
@@ -35,14 +33,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	private void HandleInput() {
-		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {
-			isRunning = true;
-		}
-		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift)) {
-			isRunning = false;
-		}
 	
-		mx = Input.GetAxisRaw("Horizontal") * (isRunning ? runSpeed : walkSpeed);
+		mx = Input.GetAxisRaw("Horizontal") * speed;
 		
 		if (onGround) {
 			my = 0f;
@@ -79,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
 		rays[2] = new Ray(new Vector3(p.x + collider.size.x / 2, ySide, 0), rayDir);
 		
 		foreach(Ray r in rays){
-			Debug.DrawRay(r.origin, r.direction);
+//			Debug.DrawRay(r.origin, r.direction);
 			if (Physics.Raycast(r, out hitInfo, Mathf.Max(Mathf.Abs(movement.y), errMargin), collisionMask)) { // see if we hit something
 				onGround = vDir < 0;
 				my = 0f;
@@ -102,7 +94,7 @@ public class PlayerMovement : MonoBehaviour {
 		rays[2] = new Ray(new Vector3(xSide, p.y + collider.size.y, 0), rayDir);
 		
 		foreach(Ray r in rays){
-			Debug.DrawRay(r.origin, r.direction);
+//			Debug.DrawRay(r.origin, r.direction);
 			if (Physics.Raycast(r, out hitInfo, Mathf.Max(Mathf.Abs(movement.x), errMargin), collisionMask)) { // see if we hit something
 				mx = 0f;
                 movement = new Vector3(0f, movement.y, 0f);

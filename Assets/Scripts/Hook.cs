@@ -5,13 +5,12 @@ public class Hook : MonoBehaviour {
 	
 	public LayerMask mouseLayer;
 	public LayerMask textLayer;
-	public Transform hook;
-	private Transform hand;
 	private bool hooked;
-	public Transform grapHook;
+	private Ray hookRay;
+	private float hookLength = 10;
 	
 	void Start () {
-		hand = transform.Find ("Hand");
+
 	}
 	
 	// Update is called once per frame
@@ -23,31 +22,21 @@ public class Hook : MonoBehaviour {
 		
 		if (Physics.Raycast(ray, out hitInfo, 100f, mouseLayer)) {
 //			Debug.DrawLine(ray.origin, hitInfo.point);
-			Ray hookRay = new Ray(hookStart, hitInfo.point - transform.position);
-			Debug.DrawRay(hookRay.origin, hookRay.direction * 10);
+			Ray hray = new Ray(hookStart, hitInfo.point - transform.position);
+//			Debug.DrawRay(hray.origin, hray.direction * hookLength);
 			RaycastHit hitHook;
-			if (!hooked && Physics.Raycast (hookRay, out hitHook, 10f, textLayer)) {
-				hook.position = Vector3.Lerp (hitHook.point, hookStart, 0.5f);
-				float ratio = hitHook.distance / 2;
-				hook.localScale = new Vector3(0.1f, ratio, 0.1f);
-				hook.LookAt(hitHook.point);
-				hook.RotateAround(hook.position, Vector3.forward, 90);
-				hook.renderer.enabled = true;
-				
-				grapHook.position = hitHook.point;
-				grapHook.renderer.enabled = true;
-				if (Input.GetMouseButton(0) && !hooked) {
-					hooked = true;
-					grapHook.hingeJoint.connectedBody = hook.gameObject.rigidbody;
-					hook.hingeJoint.connectedBody = hand.gameObject.rigidbody;
-				}
+			if (!hooked && Physics.Raycast (hookRay, out hitHook, hookLength, textLayer)) {
+				hookRay = new Ray(hray.origin, hray.direction * hitHook.distance);
+				Debug.DrawRay(hray.origin, hray.direction * hitHook.distance);
 			} else {
-				if (!hooked) {
-					hook.renderer.enabled = false;
-					grapHook.renderer.enabled = false;
-				}
+
 			}
 			
 		}
+	}
+	
+	void OnDrawGizmosSelected() {
+		Gizmos.color = Color.red; 
+		Gizmos.DrawRay(hookRay);
 	}
 }
