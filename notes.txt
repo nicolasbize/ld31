@@ -18,13 +18,12 @@ If I have time... I'd love to implement some weapons / items:
 
 ENGINE TASKS:
 [X] : Character controls, platform feel
-[ ] : Create 3d Text Models and have them roll up
+[X] : Create 3d Text Models and have them roll up
 [ ] : Engine dynamics
 [ ] : Death
 [ ] : Traps : saws, bouncy stuffs, arrows
 
 
-Almost 7AM... Time to call it a night...
 
 This Is Your Last Chance
 What If You Could Take It Back

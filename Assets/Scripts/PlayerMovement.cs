@@ -74,8 +74,6 @@ public class PlayerMovement : MonoBehaviour {
 					my = 0f;
 					movement = new Vector3(movement.x, 0f, 0f);
 					break;
-				} else {
-					onGround = false;
 				}
 			}
 		}
