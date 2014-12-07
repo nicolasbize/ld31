@@ -9,6 +9,9 @@ public class Intro : MonoBehaviour {
 	private float curTimer = 0f;
 	private int curLength = 0;
 	private bool done = false;
+	public GameObject mrs;
+	public GameObject mr;
+	private int step = 0;
 	
 	private string introText = "In a screen far, far away...\n" +
 		"Our two heroes resided in the game's memory.\n" +
@@ -26,14 +29,22 @@ public class Intro : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		curTimer += 0.4f;
-		Debug.Log(curTimer);
 		if(curTimer > typingSpeed) {
 			curTimer = 0;
 			curLength++;
 			string curText = introText.Substring(0, curLength);
 			instruction.text = curText + "█";
 			if(curText.EndsWith("\n")) {
+				step++;
 				curTimer = -20f;
+				if(step == 2) {
+					mrs.transform.Find("LoveThought").GetComponent<MeshRenderer>().enabled = true;
+					mrs.transform.Find("LoveThought").GetComponent<ParticleSystem>().Play();
+				}
+				if (step == 3) {
+					mr.transform.Find("LoveThought").GetComponent<MeshRenderer>().enabled = true;
+					mr.transform.Find("LoveThought").GetComponent<ParticleSystem>().Play();
+				}
 			}
 			if (curLength == introText.Length) {
 				done = true;
