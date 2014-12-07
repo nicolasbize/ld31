@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Intro : MonoBehaviour {
 
 	public Text instruction;
-	private float typingSpeed = 1f;
+	private float typingSpeed = 0.3f;//1f;
 	private float curTimer = 0f;
 	private int curLength = 0;
 	private bool done = false;
@@ -29,26 +29,33 @@ public class Intro : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		curTimer += 0.4f;
-		if(curTimer > typingSpeed) {
+		if(curTimer > typingSpeed && !done) {
 			curTimer = 0;
 			curLength++;
-			string curText = introText.Substring(0, curLength);
+			string curText = introText.Substring(0, curLength - 1);
 			instruction.text = curText + "█";
 			if(curText.EndsWith("\n")) {
 				step++;
-				curTimer = -20f;
-				if(step == 2) {
+				curTimer = 0f;//-20f;
+				if(step == 3) {
 					mrs.transform.Find("LoveThought").GetComponent<MeshRenderer>().enabled = true;
 					mrs.transform.Find("LoveThought").GetComponent<ParticleSystem>().Play();
 				}
-				if (step == 3) {
+				if (step == 4) {
+					mrs.transform.Find("LoveThought").GetComponent<MeshRenderer>().enabled = false;
 					mr.transform.Find("LoveThought").GetComponent<MeshRenderer>().enabled = true;
 					mr.transform.Find("LoveThought").GetComponent<ParticleSystem>().Play();
+				}
+				if (step == 5) {
+					mr.transform.Find("LoveThought").GetComponent<MeshRenderer>().enabled = false;
+				}
+				if (step == 8) {
+					mrs.GetComponent<MrsCubeMovement>().Stop();
 				}
 			}
 			if (curLength == introText.Length) {
 				done = true;
-				
+				mrs.GetComponent<MrsCubeMovement>().RunAndHit();
 			}
 		}
 	}

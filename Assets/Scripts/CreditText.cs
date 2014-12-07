@@ -13,18 +13,42 @@ public class CreditText : MonoBehaviour {
 	public GameObject textExplosion;
 	
 	private float deathTime = 1f;
+	private bool shifting = false;
+	private bool shifted = false;
+	private Vector3 initialPos;
+	
 
 	// Use this for initialization
 	void Start () {
 		text = transform.FindChild("Text");
 		emitter = transform.FindChild ("Emitter");
+		initialPos = transform.position;
+	}
+	
+	public void Restart() {
+		transform.position = initialPos;
+		shifting = false;
+		shifted = false;
+		exploded = false;
+		enabled = true;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (enabled) {
 			float s = isDying ? speed / 10 : speed;
-			transform.Translate(Vector3.up * dir * s * Time.deltaTime);
+			if (!shifting) {
+				transform.Translate(Vector3.up * dir * s * Time.deltaTime);
+				if (!shifted && transform.localPosition.y < -14f) {
+					shifting = true;
+                }
+			} else {
+				transform.Translate(Vector3.forward * dir * s * Time.deltaTime);
+				if (transform.localPosition.z < -4f){
+					shifting = false;
+					shifted = true;
+				}
+			}
 		}
 		
 		if (isDying && !exploded) {
@@ -44,7 +68,10 @@ public class CreditText : MonoBehaviour {
 	public void Die(){
 		isDying = true;
 		emitter.gameObject.GetComponent<ParticleSystem>().Play();
-		
+	}
+	
+	public void Enable() {
+		enabled = true;
 	}
 
 }

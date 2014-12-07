@@ -32,6 +32,7 @@ public class TextTransform : MonoBehaviour {
 		rb.useGravity = false;
 		rb.isKinematic = true;
 		gameObject.name = "Text";
+		parent.tag = "Text";
 		
 		// add behaviour last as it needs to refer the other components
 		CreditText ctext = parent.AddComponent<CreditText>();
