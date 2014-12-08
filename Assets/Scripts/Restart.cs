@@ -11,7 +11,7 @@ public class Restart : MonoBehaviour {
 	private GameObject[] slicers = new GameObject[12];
 	public GameObject player;
 	public GameObject screen;
-	private Vector3 restartSpawn = new Vector3(0, 4f, 0);
+	private Vector3 restartSpawn = new Vector3(0, 4f, 0.5f);
 	private bool checkedpoint = false;
 	public bool inGame = false;
 

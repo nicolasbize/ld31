@@ -8,7 +8,7 @@ public class GameMusic : MonoBehaviour {
 	private AudioSource endMusic;
 	private string currentSong;
 
-	void Start() {
+	void Awake() {
 		introMusic = transform.Find("IntroMusic").gameObject.GetComponent<AudioSource>();
 		mainMusic = transform.Find("MainMusic").gameObject.GetComponent<AudioSource>();
 		endMusic = transform.Find("EndMusic").gameObject.GetComponent<AudioSource>();
@@ -31,9 +31,15 @@ public class GameMusic : MonoBehaviour {
 	
 	
 	public void StopAllSongs(){
-		introMusic.Stop ();
-		mainMusic.Stop ();
-		endMusic.Stop ();
+		if(introMusic != null) {
+			introMusic.Stop ();
+		}
+		if(mainMusic != null) {
+			mainMusic.Stop ();
+		}
+		if(endMusic != null) {
+			endMusic.Stop ();
+		}
 	}
 	
 }
