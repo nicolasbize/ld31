@@ -12,6 +12,11 @@ public class Intro : MonoBehaviour {
 	public GameObject mrs;
 	public GameObject mr;
 	private int step = 0;
+
+	
+	void Start() {
+		gameObject.GetComponent<GameMusic>().Play("intro");
+	}
 	
 	private string introText = "In a screen far, far away...\n" +
 		"Our two heroes resided in the game's memory.\n" +
@@ -28,7 +33,7 @@ public class Intro : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		curTimer += 0.4f;
+		curTimer += 0.3f;
 		if(curTimer > typingSpeed && !done) {
 			curTimer = 0;
 			curLength++;
@@ -65,4 +70,5 @@ public class Intro : MonoBehaviour {
 		done = true;
 		instruction.text = "";
 	}
+	
 }

@@ -68,6 +68,7 @@ public class CreditText : MonoBehaviour {
 				exploded = true;
 				emitter.gameObject.GetComponent<ParticleSystem>().Stop();
 				GameObject explode = Instantiate(textExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
+				explode.GetComponent<AudioSource>().Play();
 				// Destroy(text.gameObject);
 				text.gameObject.GetComponent<MeshRenderer>().enabled = false;
 				gameObject.GetComponent<BoxCollider>().enabled = false;

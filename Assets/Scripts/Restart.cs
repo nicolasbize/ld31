@@ -35,6 +35,7 @@ public class Restart : MonoBehaviour {
 		
 		// skip intro
 		if(Input.GetKeyDown(KeyCode.Escape) && !inGame) {
+			gameObject.GetComponent<GameMusic>().Play("main");
 			RestartGame(true);
 		}
 		
@@ -43,6 +44,7 @@ public class Restart : MonoBehaviour {
 	// serialize all the text's positions to restaure it in case of death
 	public void IntroDone(){
 		inGame = true;
+		gameObject.GetComponent<GameMusic>().Play("main");
 	}
 	
 	public void SetCheckpoint(Vector3 spawn) {
@@ -72,7 +74,7 @@ public class Restart : MonoBehaviour {
 		running = false;
 		RemoveIntroElements(false);
 		Destroy(GameObject.Find ("Credits"));
-		// play music
+		gameObject.GetComponent<GameMusic>().Play("end");
 	}
 	
 	private void RemoveIntroElements(bool respawnPlayer) {
